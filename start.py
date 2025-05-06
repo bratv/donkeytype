@@ -23,10 +23,14 @@ wrong_list = []
 chosen_chars = []
 error_map = {}
 beginningui = 0
+count = 0
+setcount = 5
 
-def init(upper,lower,symbols,custom):
+def init(upper,lower,symbols,custom,number):
     print('initiating letters')
     global chosen_chars
+    global setcount
+    setcount = number
     chosen_chars = []
     if custom:
         print(custom)
@@ -85,7 +89,8 @@ def handleInput(inp,c):
 
 def main():
     global beginningui
-    while True:
+    global count
+    while count < setcount:
         os.system('clear')
         c = random.choice(chosen_chars)
         previous_list.append(c)
@@ -94,8 +99,11 @@ def main():
         showUI()
         inp = selectorstest.mygetch()
         handleInput(inp,c)
+        count += 1
 
         if ord(inp) == 27:
-            showEnd()
             break
+    os.system('clear')
+    showUI()
+    showEnd()
 
